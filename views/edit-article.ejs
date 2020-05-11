@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+           <form action="<%= editArticle ? '/edit-article' : '/add-article' %>" method="POST">
+                <div class="form-group">
+                  <label for="name">Title</label>
+                  <input type="text" class="form-control" id="title" name="title" value="<%= editArticle ? article.title:'' %>">
+                </div>
+                <div class="form-group">
+                  <label for="mobile">Price</label>
+                  <input type="text" class="form-control" id="price" name="price" value="<%= editArticle ? article.price:'' %>">
+                </div>
+                <div class="form-group">
+                    <label for="email">Description</label>
+                    <textarea class="form-control" id="description" name="description"><%= editArticle ? article.description:'' %></textarea>
+                </div>
+                <% if (editArticle) { %>
+                    <input type="hidden" value="<%= article._id %>" name="articleId">
+                <% } %>
+                <button type="submit" class="btn btn-primary"><%= editArticle ? 'Update': 'Add' %></button>
+               
+           </form>
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>

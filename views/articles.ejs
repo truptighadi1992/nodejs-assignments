@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            
+            <p class="padding-top">
+                <a href="/add-article" class="btn btn-primary">Add Article</a>
+            </p>
+        
+                <% if(articleList.length > 0) { %>
+                <div class="col-md-12">
+                    <% for (let article of articleList) { %>
+                        <div class="col-md-4 float-left">
+                        <div class="card">
+                            <div class="card-header"><b><%= article.title %></b></div>
+                            <div class="card-body">
+                                <img src="/article.png" alt="<%= article.title %>">
+                                <p class="text-center">Price : Rs <%= article.price %></p>
+                                <p><i><%= article.description %></i></p>
+                            </div>
+                            <div class="card-footer text-center row no-margin">
+                                <div class="col-md-6">
+                                    <a href="/edit-article/<%= article._id %>" class="btn btn-info">Edit</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <form method="POST" action="/delete-article">
+                                        <input type="hidden" value="<%= article._id %>" name="articleId">
+                                        <button class="btn btn-warning" type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> 
+                        </div>
+                    <% } %>    
+                </div>    
+                
+                <% }else { %>
+                    <h4>No Articles found </h4>
+
+                    <%  } %>
+
+        </div>
+    </div>
+</body>
+
+</html>
